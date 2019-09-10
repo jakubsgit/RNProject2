@@ -51,7 +51,7 @@ const StartGameScreen = props => {
         "Pamiętaj! Liczba musi mieścić się w przedziale 1-99",
         [
           {
-            text: "Juz wpisuję :)",
+            text: "Już wpisuję :)",
             style: "destructive",
             onPress: resetInputHandler
           }
@@ -68,12 +68,13 @@ const StartGameScreen = props => {
   let confirmedOutput;
   if (confirmation) {
     confirmedOutput = (
-      <Card style={{width: '70%', backgroundColor: '#C6c6c6'}}>
+      <Card style={{ width: "70%", backgroundColor: "#C6c6c6" }}>
         <Text style={{ fontSize: 20 }}>Wybrany numer:</Text>
-        <Number>
-            {selectedNumber}
-        </Number>
-        <Button title="BĘDĘ GRAŁ W GRĘ"/>
+        <Number>{selectedNumber}</Number>
+        <Button
+          title="BĘDĘ GRAŁ W GRĘ"
+          onPress={() => props.onStartGame(selectedNumber)}
+        />
       </Card>
     );
   }
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     paddingTop: 40,
-    width: '100%'
+    width: "100%"
   },
   title: {
     fontSize: 20,
