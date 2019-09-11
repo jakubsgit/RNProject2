@@ -13,7 +13,7 @@ const header = props => {
 const styles = StyleSheet.create({
     container: {
       width: '100%',
-      height: 90,
+      height: 140,
       paddingTop: 40,
       backgroundColor: '#f728',
       alignItems: 'center',
@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     },
     headerTitle: {
       color: 'black',
-      fontSize: 18
+      fontSize: 18,
+      textTransform: 'uppercase',
     }
     
 })

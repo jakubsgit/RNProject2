@@ -69,7 +69,7 @@ const StartGameScreen = props => {
   if (confirmation) {
     confirmedOutput = (
       <Card style={{ width: "70%", backgroundColor: "#C6c6c6" }}>
-        <Text style={{ fontSize: 20 }}>Wybrany numer:</Text>
+        <Text style={{ fontSize: 20 }}>Wybrany numer, zapamiętaj go:</Text>
         <Number>{selectedNumber}</Number>
         <Button
           title="BĘDĘ GRAŁ W GRĘ"
