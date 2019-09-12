@@ -14,6 +14,7 @@ import {
 import Card from "../components/Card";
 import Input from "../components/Input";
 import Number from "../components/Number";
+import MainButton from "../components/MainButton";
 import Colors from "../constants/colors";
 
 const StartGameScreen = props => {
@@ -71,12 +72,12 @@ const StartGameScreen = props => {
       <Card style={{ width: "70%", backgroundColor: "#C6c6c6" }}>
         <Text style={{ fontSize: 20 }}>Wybrany numer, zapamiętaj go:</Text>
         <Number>{selectedNumber}</Number>
-        <Button
-          title="BĘDĘ GRAŁ W GRĘ"
-          onPress={() => props.onStartGame(selectedNumber)}
-        />
+        <MainButton onPress={() => props.onStartGame(selectedNumber)}>
+          BĘDĘ GRAŁ W GRĘ
+        </MainButton>
       </Card>
     );
+    
   }
 
   return (
