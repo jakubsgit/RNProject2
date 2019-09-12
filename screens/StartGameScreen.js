@@ -8,7 +8,10 @@ import {
   Button,
   TouchableWithoutFeedback,
   Keyboard,
-  Alert
+  Alert,
+  Dimensions,
+  ScrollView,
+  KeyboardAvoidingView
 } from "react-native";
 
 import Card from "../components/Card";
@@ -69,56 +72,75 @@ const StartGameScreen = props => {
   let confirmedOutput;
   if (confirmation) {
     confirmedOutput = (
-      <Card style={{ width: "70%", backgroundColor: "#C6c6c6" }}>
-        <Text style={{ fontSize: 20 }}>Wybrany numer, zapamiętaj go:</Text>
+      <Card
+        style={{
+          width: "70%",
+          backgroundColor: "#C6c6c6",
+          height: Dimensions.get("screen").height > 600 ? null : "40%"
+        }}
+      >
+        <Text
+          style={{ fontSize: Dimensions.get("screen").height > 600 ? 20 : 15 }}
+        >
+          Wybrany numer, zapamiętaj go:
+        </Text>
         <Number>{selectedNumber}</Number>
-        <MainButton onPress={() => props.onStartGame(selectedNumber)}>
+        <MainButton
+          fontSize={{
+            fontSize: Dimensions.get("screen").height > 600 ? 15 : null
+          }}
+          onPress={() => props.onStartGame(selectedNumber)}
+        >
           BĘDĘ GRAŁ W GRĘ
         </MainButton>
       </Card>
     );
-    
   }
 
   return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss();
-      }}
-    >
-      <View style={styles.screen}>
-        <Text style={styles.title}>Zacznij nową grę!</Text>
-        <Card style={styles.inputScreen}>
-          <Text>Wybierz dowolny numer</Text>
-          <Input
-            blurOnSubmit
-            autoCorrect={false}
-            style={styles.input}
-            keyboardType="number-pad"
-            maxLength={2}
-            onChangeText={numberInputHandler}
-            value={enteredValue}
-          />
-          <View style={styles.buttonScreen}>
-            <View style={styles.button}>
-              <Button
-                title="Zacznij od nowa!"
-                onPress={resetInputHandler}
-                color={Colors.secondary}
-              />
+    <ScrollView>
+    <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={50}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+        <View style={styles.screen}>
+          <Text style={styles.title}>Zacznij nową grę!</Text>
+          <Card style={styles.inputScreen}>
+            <Text>Wybierz dowolny numer</Text>
+            <Input
+              blurOnSubmit
+              autoCorrect={false}
+              style={styles.input}
+              keyboardType="number-pad"
+              maxLength={2}
+              onChangeText={numberInputHandler}
+              value={enteredValue}
+            />
+            <View style={styles.buttonScreen}>
+              <View>
+                <Button
+                  title="Zacznij od nowa!"
+                  onPress={resetInputHandler}
+                  style={styles.button}
+                />
+              </View>
+              <View>
+                <Button
+                  title="Potwierdź"
+                  onPress={confirmInputHandler}
+                  style={styles.button}
+                />
+              </View>
             </View>
-            <View style={styles.button}>
-              <Button
-                title="Potwierdź"
-                onPress={confirmInputHandler}
-                color={Colors.primary}
-              />
-            </View>
-          </View>
-        </Card>
-        {confirmedOutput}
-      </View>
-    </TouchableWithoutFeedback>
+          </Card>
+          {confirmedOutput}
+        </View>
+      </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </ScrollView>
+    
   );
 };
 
@@ -135,8 +157,11 @@ const styles = StyleSheet.create({
   },
   buttonScreen: {
     flexDirection: "row",
-    width: "70%",
-    justifyContent: "space-around"
+    width: "90%",
+    maxWidth: "95%",
+    minWidth: 250,
+    justifyContent: "space-around",
+    marginTop: Dimensions.get("window").height > 600 ? 20 : 10
   },
   inputScreen: {
     padding: 15,
@@ -146,6 +171,9 @@ const styles = StyleSheet.create({
   input: {
     width: 50,
     textAlign: "center"
+  },
+  button1: {
+    color: Colors.primary
   }
 });
 

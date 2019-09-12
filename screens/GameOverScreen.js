@@ -1,6 +1,14 @@
 import React from "react";
 
-import { View, Text, StyleSheet, Button, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  Image,
+  Dimensions,
+  ScrollView
+} from "react-native";
 import Card from "../components/Card";
 import MainButton from "../components/MainButton";
 
@@ -12,22 +20,25 @@ const gameOverScreen = props => {
   }
 
   return (
-    <View style={styles.screen}>
-      <Text style={styles.text}>Koniec gry!</Text>
-      <Text style={styles.text}>
-        Udało mi się odgadnąć Twoją liczbę po{" "}
-        <Text style={styles.highlight}>{props.roundsNumber}</Text> {guessText}!
-      </Text>
-      <View style={styles.imageContainer}>
-        <Image
-          fadeDuration={2500}
-          source={require("../assets/success.png")}
-          resizeMode="cover"
-          style={styles.image}
-        />
+    <ScrollView>
+      <View style={styles.screen}>
+        <Text style={styles.text}>Koniec gry!</Text>
+        <Text style={styles.text}>
+          Udało mi się odgadnąć Twoją liczbę po{" "}
+          <Text style={styles.highlight}>{props.roundsNumber}</Text> {guessText}
+          !
+        </Text>
+        <View style={styles.imageContainer}>
+          <Image
+            fadeDuration={2500}
+            source={require("../assets/success.png")}
+            resizeMode="cover"
+            style={styles.image}
+          />
+        </View>
+        <MainButton onPress={props.onRestart}>Zagrajmy jeszcze raz!</MainButton>
       </View>
-      <MainButton onPress={props.onRestart}>Zagrajmy jeszcze raz!</MainButton>
-    </View>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({
@@ -39,12 +50,12 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: "center",
-    fontSize: 20,
+    fontSize: Dimensions.get("screen").height > 600 ? 20 : 15,
     fontWeight: "bold"
   },
   imageContainer: {
-    width: 300,
-    height: 300,
+    width: Dimensions.get("screen").height > 600 ? 300 : 150,
+    height: Dimensions.get("screen").height > 600 ? 300 : 150,
     borderRadius: 150,
     borderWidth: 2,
     borderColor: "black",

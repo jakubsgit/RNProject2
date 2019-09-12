@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Button,
   Alert,
-  ScrollView
+  ScrollView,
+  Dimensions
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -118,12 +119,12 @@ const styles = StyleSheet.create({
     margin: "auto"
   },
   list: {
-    alignItems: 'center',
-    justifyContent: 'flex-end'
+    alignItems: "center",
+    justifyContent: "flex-end"
   },
   listItem: {
     borderColor: "black",
-    borderWidth: 2,
+    borderWidth: Dimensions.get("screen").height > 600 ? 2 : 1,
     borderRadius: 10,
     padding: 15,
     marginVertical: 10,

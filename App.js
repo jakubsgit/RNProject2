@@ -66,6 +66,7 @@ export default function App() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    maxHeight: "100%"
   }
 });
