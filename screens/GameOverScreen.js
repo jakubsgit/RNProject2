@@ -26,7 +26,7 @@ const gameOverScreen = props => {
           style={styles.image}
         />
       </View>
-        <MainButton onPress={props.onRestart}>Zagrajmy jeszcze raz!</MainButton>
+      <MainButton onPress={props.onRestart}>Zagrajmy jeszcze raz!</MainButton>
     </View>
   );
 };

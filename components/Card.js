@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     backgroundColor: "white",
     elevation: 9,
-    borderBottomEndRadius: 20
+    borderBottomEndRadius: 20,
+    borderTopLeftRadius: 20
   }
 });
 
