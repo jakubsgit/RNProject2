@@ -7,7 +7,7 @@ import {
   Button,
   Image,
   Dimensions,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import Card from "../components/Card";
 import MainButton from "../components/MainButton";

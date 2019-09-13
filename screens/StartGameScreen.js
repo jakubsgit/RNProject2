@@ -11,7 +11,8 @@ import {
   Alert,
   Dimensions,
   ScrollView,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Platform
 } from "react-native";
 
 import Card from "../components/Card";
@@ -99,48 +100,47 @@ const StartGameScreen = props => {
 
   return (
     <ScrollView>
-    <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={50}>
-      <TouchableWithoutFeedback
-        onPress={() => {
-          Keyboard.dismiss();
-        }}
-      >
-        <View style={styles.screen}>
-          <Text style={styles.title}>Zacznij nową grę!</Text>
-          <Card style={styles.inputScreen}>
-            <Text>Wybierz dowolny numer</Text>
-            <Input
-              blurOnSubmit
-              autoCorrect={false}
-              style={styles.input}
-              keyboardType="number-pad"
-              maxLength={2}
-              onChangeText={numberInputHandler}
-              value={enteredValue}
-            />
-            <View style={styles.buttonScreen}>
-              <View>
-                <Button
-                  title="Zacznij od nowa!"
-                  onPress={resetInputHandler}
-                  style={styles.button}
-                />
+      <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={50}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            Keyboard.dismiss();
+          }}
+        >
+          <View style={styles.screen}>
+            <Text style={styles.title}>Zacznij nową grę!</Text>
+            <Card style={styles.inputScreen}>
+              <Text>Wybierz dowolny numer</Text>
+              <Input
+                blurOnSubmit
+                autoCorrect={false}
+                style={styles.input}
+                keyboardType="number-pad"
+                maxLength={2}
+                onChangeText={numberInputHandler}
+                value={enteredValue}
+              />
+              <View style={styles.buttonScreen}>
+                <View>
+                  <MainButton onPress={resetInputHandler} style={styles.button} styles={styles.button1}>
+                    Zacznij od nowa!
+                  </MainButton>
+                </View>
+                <View>
+                  <MainButton
+                    onPress={confirmInputHandler}
+                    style={styles.button}
+                    styles={styles.button2}
+                  >
+                    Potwierdź
+                  </MainButton>
+                </View>
               </View>
-              <View>
-                <Button
-                  title="Potwierdź"
-                  onPress={confirmInputHandler}
-                  style={styles.button}
-                />
-              </View>
-            </View>
-          </Card>
-          {confirmedOutput}
-        </View>
-      </TouchableWithoutFeedback>
+            </Card>
+            {confirmedOutput}
+          </View>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </ScrollView>
-    
   );
 };
 
@@ -149,7 +149,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     paddingTop: 40,
-    width: "100%"
+    width: "100%",
+    height: Platform.OS === "ios" ? "90%" : "100%"
   },
   title: {
     fontSize: 20,
@@ -166,14 +167,18 @@ const styles = StyleSheet.create({
   inputScreen: {
     padding: 15,
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    margin: 20
   },
   input: {
     width: 50,
     textAlign: "center"
   },
   button1: {
-    color: Colors.primary
+    backgroundColor: Colors.red
+  },
+  button2: {
+    backgroundColor: Colors.green
   }
 });
 
